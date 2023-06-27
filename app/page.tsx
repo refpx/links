@@ -1,5 +1,6 @@
 import Image from 'next/image'
-import data from '../data.json'
+import { get } from '@vercel/edge-config'
+import { redirect } from 'next/navigation'
 
 function TwitterIcon () {
   return (
@@ -85,25 +86,31 @@ function LinkCard ({
   )
 }
 
-// interface Data {
-//   name: string
-//   avatar: string
-//   links: Link[]
-//   socials: Social[]
-// }
+interface Data {
+  name: string
+  avatar: string
+  links: Link[]
+  socials: Social[]
+}
 
-// interface Link {
-//   href: string
-//   title: string
-//   image?: string
-// }
+interface Link {
+  href: string
+  title: string
+  image?: string
+}
 
-// interface Social {
-//   href: string
-//   title: string
-// }
+interface Social {
+  href: string
+  title: string
+}
 
-export default function Home () {
+export default async function Home () {
+  const data: Data | undefined = await get('links')
+
+  if (data == null) {
+    redirect('https://github.com/refpx/links')
+  }
+
   return (
     <div className="flex items-center flex-col mx-auto w-full justify-center mt-16 px-8">
       <Image
