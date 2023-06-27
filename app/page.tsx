@@ -85,23 +85,23 @@ function LinkCard ({
   )
 }
 
-interface Data {
-  name: string
-  avatar: string
-  links: Link[]
-  socials: Social[]
-}
+// interface Data {
+//   name: string
+//   avatar: string
+//   links: Link[]
+//   socials: Social[]
+// }
 
-interface Link {
-  href: string
-  title: string
-  image?: string
-}
+// interface Link {
+//   href: string
+//   title: string
+//   image?: string
+// }
 
-interface Social {
-  href: string
-  title: string
-}
+// interface Social {
+//   href: string
+//   title: string
+// }
 
 export default function Home () {
   return (
